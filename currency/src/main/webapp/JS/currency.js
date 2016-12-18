@@ -30,26 +30,6 @@ $(window).on(
                   $('#answer').val(add);
       					});
       		});
-          $(window).on(
-          		'load',
-          		function() {
-          			$(document).on(
-          					'click',
-          					'#button',
-          					function() {
-                      var bin=$('#bin').val();
-                      var octal=0;
-                      var j=1;
-                      var reminder;
-                      while (bin != 0) {
-                      reminder=bin%10;
-                      octal=octal+reminder*j;
-                      j=j*2;
-                      bin=bin/10;
-                    }
-                    var oc=$('#oct').val(octal);
-          					});
-          		});
 $(document).ready(function(){
     $("#h1").click(function(){
         $("#first").slideToggle("slow");
