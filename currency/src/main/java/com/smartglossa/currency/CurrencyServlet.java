@@ -35,6 +35,7 @@ public class CurrencyServlet extends HttpServlet {
 
         if (operation.equals("add")) {
             JSONObject obj = new JSONObject();
+            String name = request.getParameter("name");
             int rs1 = Integer.parseInt(request.getParameter("rs1"));
             int rs2 = Integer.parseInt(request.getParameter("rs2"));
             int rs5 = Integer.parseInt(request.getParameter("rs5"));
@@ -43,7 +44,6 @@ public class CurrencyServlet extends HttpServlet {
             int rs50 = Integer.parseInt(request.getParameter("rs50"));
             int rs100 = Integer.parseInt(request.getParameter("rs100"));
             int rs500 = Integer.parseInt(request.getParameter("rs500"));
-            int rs1000 = Integer.parseInt(request.getParameter("rs1000"));
             int rs2000 = Integer.parseInt(request.getParameter("rs2000"));
             int total = Integer.parseInt(request.getParameter("total"));
             try {
@@ -51,9 +51,9 @@ public class CurrencyServlet extends HttpServlet {
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/currency", "root", "root");
                 Statement statement = connection.createStatement();
                 String query =
-                        "insert into calculation(one,two,five,ten,twenty,fivty,oneh,fiveh,onet,twot,total)values(" + rs1
+                        "insert into calculation(name,one,two,five,ten,twenty,fivty,oneh,fiveh,twot,total)values('" + name + "'," + rs1
                                 + "," + rs2 + "," + rs5 + "," + rs10 + "," + rs20 + "," + rs50 + "," + rs100 + ","
-                                + rs500 + "," + rs1000 + "," + rs2000 + "," + total + ")";
+                                + rs500 + "," + rs2000 + "," + total + ")";
                 statement.execute(query);
                 obj.put("status", "success");
                 response.getWriter().print(obj);
